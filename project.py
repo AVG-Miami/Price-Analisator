@@ -29,8 +29,8 @@ class PriceMachine():
                 масса
                 фасовка
         '''
-#        con1 = sqlite3.connect("bd.db")
-#        cursor1 = con1.cursor()
+        #        con1 = sqlite3.connect("bd.db")
+        #        cursor1 = con1.cursor()
         # Нахождение файлов содержащих слово price
         #        print(os.listdir(file_path))
         true_files = []
@@ -61,7 +61,8 @@ class PriceMachine():
                          cost_by_weigth))
 
                     con.commit()
-#        con1.close()
+
+    #        con1.close()
 
     def _search_product_price_weight(self, headers=''):
         '''
@@ -135,11 +136,12 @@ class PriceMachine():
         cursor.execute(
             f"SELECT tovar, price, weigth, file , cost_by_weigth  FROM Tovary_BD WHERE tovar LIKE '%{text1}%' ORDER BY cost_by_weigth")
         tovars = cursor.fetchall()
-        print('№   Наименование               цена     вес(ru)   фаил      цена за кг.')
+        print('№'.center(4) + 'Наименование'.center(26) + 'цена'.center(8) + 'вес(кг)'.center(9) + 'фаил'.center(
+            18) + 'цена за кг.'.center(15))
         d = 1
         for tovar in tovars:
-            print(d, " ", tovar[0], "                      ", tovar[1], "             ", tovar[2], "    ", tovar[3],
-                  "    ", tovar[4])
+            print(str(d).center(4), tovar[0].ljust(26), str(tovar[1]).ljust(8), str(tovar[2]).ljust(9),
+                  tovar[3].ljust(18), str(tovar[4]).ljust(15))
             d += 1
 
 
